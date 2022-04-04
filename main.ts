@@ -39,13 +39,15 @@ export default class MyPlugin extends Plugin {
 			for (let index = 0; index < images.length; index++) {
 				let image = images.item(index);
 				let settings = image.nextElementSibling;
-				if (settings.nodeName.toLowerCase() === "code") {
-					if (settings.innerHTML.charAt(0) === "/") {
-						settings.innerHTML = settings.innerHTML.replace("/","");
-						image.style.float = "none";
-					} else {
-						this.format(element, context, image, settings.innerHTML);
-						settings.innerHTML = "";
+				if (settings) {
+					if (settings.nodeName.toLowerCase() === "code") {
+						if (settings.innerHTML.charAt(0) === "/") {
+							settings.innerHTML = settings.innerHTML.replace("/","");
+							image.style.float = "none";
+						} else {
+							this.format(element, context, image, settings.innerHTML.valueOf());
+							settings.remove();
+						}
 					}
 				}
 			}
@@ -72,7 +74,7 @@ export default class MyPlugin extends Plugin {
 	}
 
 	format(element: Element, context: any, image: HTMLElement, settings: string) {
-		let s = settings.valueOf();
+		let s = settings;
 		switch (s.charAt(0).toLowerCase()) {
 			case "r":
 				s = "right";
@@ -106,7 +108,7 @@ export default class MyPlugin extends Plugin {
 		console.log(colourSpan)
 		console.log(code)
 		code.parentElement.insertBefore(colourSpan, code);
-		code.innerHTML = "";
+		code.remove();
 	}
 
 	onunload() {

@@ -1,9 +1,9 @@
 {
-	"id": "image-formatting-plugin",
-	"name": "Image formatting plugin",
-	"version": "1.0.1",
+	"id": "image-formatting-obsidian",
+	"name": "Image formatting",
+	"version": "1.0.0",
 	"minAppVersion": "0.12.0",
-	"description": "It's an egg!",
+	"description": "Image formatting (and bonus text highlighting)",
 	"author": "invisi-splat",
 	"authorUrl": "https://obsidian.md",
 	"isDesktopOnly": false
